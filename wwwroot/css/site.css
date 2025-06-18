@@ -756,3 +756,27 @@ input[type=range] {
         transform: translateX(500px);
     }
 }
+
+.navbar {
+    background-color: #f8f9fa;
+    padding: 0.5rem 1rem;
+    display: flex;
+    gap: 1rem;
+    border-bottom: 1px solid #ddd;
+    font-size: 0.95rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #333;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+}
+
+    .nav-link.active {
+        background-color: #007bff;
+        color: white;
+    }

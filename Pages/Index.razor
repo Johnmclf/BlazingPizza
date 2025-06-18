@@ -4,6 +4,12 @@
  @using BlazingPizza.Services
  @inject OrderState OrderState
 
+<nav class="navbar">
+    <NavLink href="/" class="nav-link" activeClass="active">Accueil</NavLink>
+    <NavLink href="/validation" class="nav-link" activeClass="active">Validation</NavLink>
+</nav>
+
+
  <div class="main">
      <h1>Blazing Pizzas</h1>
      <ul class="pizza-cards">
@@ -58,10 +64,11 @@
      <div class="order-total @(OrderState.Order.Pizzas.Any() ? "" : "hidden")">
          Total:
          <span class="total-price">@OrderState.Order.GetFormattedTotalPrice()</span>
-         <a href="checkout"
-            class="@(OrderState.Order.Pizzas.Count == 0 ? "btn btn-warning disabled" : "btn btn-warning")">
-             Order >
+         <a @onclick="GoToValidation"
+           class="@(OrderState.Order.Pizzas.Count == 0 ? "btn btn-warning disabled" : "btn btn-warning")">
+            Order >
          </a>
+
      </div>
  </div>
 
@@ -73,4 +80,12 @@
      {
          specials = await HttpClient.GetFromJsonAsync<List<PizzaSpecial>>(NavigationManager.BaseUri + "specials");
      }
+
+    void GoToValidation()
+    {
+        if (OrderState.Order.Pizzas.Count > 0)
+        {
+            NavigationManager.NavigateTo("/validation");
+        }
+    }
  }
